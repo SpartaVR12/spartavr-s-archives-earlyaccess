@@ -117,38 +117,49 @@
     const audio2 = document.getElementById('audio2');
     const audio3 = document.getElementById('audio3');
     const footer = document.getElementById('footer');
-
-    image.addEventListener('click', () => {
-      // Change to homepagetalk.png and play the first audio
+  
+    let isAudioPlaying = false;
+  
+    const playAudio = (audio) => {
+      return new Promise((resolve) => {
+        audio.play();
+        audio.onended = resolve;
+      });
+    };
+  
+    const handleImageClick = async () => {
+      if (isAudioPlaying) return;
+      isAudioPlaying = true;
+  
       image.src = 'homepagetalk.png';
       subtitle.textContent = "Why did you click on this logo? Did you think it was something special, like redirecting you to another website?";
-      audio1.play();
-
-      // When the first audio ends
-      audio1.onended = () => {
-        // Change to homepagetalk2.png and play the second audio
-        image.src = 'homepagetalk2.png';
-        subtitle.textContent = "Also welcome to SpartaVR's Archives website, where YOU get to see a dump of my SWF files, videos, images, and more!";
-        audio2.play();
-
-        // When the second audio ends
-        audio2.onended = () => {
-          // Change to homepagetalk3.png and play the third audio
-          image.src = 'homepagetalk3.png';
-          subtitle.textContent = "And if you're not an adult, do not go to the nsfw tabs, otherwise you'll get whipped by your parents.";
-          audio3.play();
-
-          // When the third audio ends
-          audio3.onended = () => {
-            // Revert to homepage.png and clear the subtitle
-            image.src = 'homepage.png';
-            subtitle.textContent = "";
-          };
-        };
-      };
+      await playAudio(audio1);
+  
+      image.src = 'homepagetalk2.png';
+      subtitle.textContent = "Also welcome to SpartaVR's Archives website, where YOU get to see a dump of my SWF files, videos, images, and more!";
+      await playAudio(audio2);
+  
+      image.src = 'homepagetalk3.png';
+      subtitle.textContent = "And if you're not an adult, do not go to the nsfw tabs, otherwise you'll get whipped by your parents.";
+      await playAudio(audio3);
+  
+      image.src = 'homepage.png';
+      subtitle.textContent = "";
+      isAudioPlaying = false;
+    };
+  
+    // Click and keyboard accessibility
+    image.addEventListener('click', handleImageClick);
+    image.setAttribute('tabindex', '0');
+    image.setAttribute('aria-label', 'Clickable SpartaVR logo that plays dialogue');
+    image.addEventListener('keydown', (event) => {
+      if ((event.key === 'Enter' || event.key === ' ') && !isAudioPlaying) {
+        handleImageClick();
+        event.preventDefault();
+      }
     });
-
-    // Function to update the date and time
+  
+    // Date/Time Clock
     const updateDateTime = () => {
       const now = new Date();
       const dayName = now.toLocaleString('en-US', { weekday: 'long' });
@@ -158,12 +169,13 @@
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
       const seconds = now.getSeconds().toString().padStart(2, '0');
-
+  
       footer.textContent = `${dayName} Date: ${day} ${month} ${year} Clock: ${hours}:${minutes}:${seconds}`;
     };
-
-    // Update the date and time every second
+  
+    updateDateTime(); // initialize immediately
     setInterval(updateDateTime, 1000);
   </script>
+  
 </body>
 </html>
