@@ -26,12 +26,21 @@
       margin: 20px 0;
     }
 
-    /* Bio text styling */
-    p {
-      font-size: 1.5em;
+    /* Subtitle styling */
+    #subtitle {
+      font-size: 1.2em;
       color: white;
       text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black; /* Full black outline */
       margin: 10px 0;
+      height: 2em; /* Fixed height to avoid layout shift */
+    }
+
+    /* Image styling */
+    .centered-image {
+      max-width: 100%; /* Make sure the image is responsive */
+      max-height: 50vh; /* Limit height for better display */
+      margin-bottom: 20px;
+      cursor: pointer; /* Indicate interactivity */
     }
 
     /* Tab container styling */
@@ -60,11 +69,12 @@
       background-color: darkred; /* Darker red on hover */
     }
 
-    /* Image styling */
-    .centered-image {
-      max-width: 100%; /* Make sure the image is responsive */
-      max-height: 50vh; /* Limit height for better display */
-      margin-bottom: 20px;
+    /* Footer styling */
+    footer {
+      font-size: 1.2em;
+      color: white;
+      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black; /* Full black outline */
+      margin-top: 20px;
     }
   </style>
   <!-- Link to Google Fonts for pixelated font -->
@@ -75,7 +85,10 @@
   <h1>SpartaVR's Archives</h1>
 
   <!-- Centered Image Section -->
-  <img src="homepage.png" alt="Homepage Image" class="centered-image">
+  <img id="homepage-image" src="homepage.png" alt="Homepage Image" class="centered-image">
+
+  <!-- Subtitle Section -->
+  <div id="subtitle"></div>
 
   <!-- Bio Section -->
   <p>where I dump some of my SWF files, videos, images, etc. Nothing more.</p>
@@ -87,5 +100,70 @@
     <a href="images.html" class="tab">Images</a>
     <a href="documents.html" class="tab">Documents</a>
   </div>
+
+  <!-- Audio Section -->
+  <audio id="audio1" src="whydidyouclickonme.wav"></audio>
+  <audio id="audio2" src="alsowelcome.wav"></audio>
+  <audio id="audio3" src="ifyournotanadult.wav"></audio>
+
+  <!-- Footer Section -->
+  <footer id="footer"></footer>
+
+  <!-- Script for Interaction -->
+  <script>
+    const image = document.getElementById('homepage-image');
+    const subtitle = document.getElementById('subtitle');
+    const audio1 = document.getElementById('audio1');
+    const audio2 = document.getElementById('audio2');
+    const audio3 = document.getElementById('audio3');
+    const footer = document.getElementById('footer');
+
+    image.addEventListener('click', () => {
+      // Change to homepagetalk.png and play the first audio
+      image.src = 'homepagetalk.png';
+      subtitle.textContent = "Why did you click on this logo? Did you think it was something special, like redirecting you to another website?";
+      audio1.play();
+
+      // When the first audio ends
+      audio1.onended = () => {
+        // Change to homepagetalk2.png and play the second audio
+        image.src = 'homepagetalk2.png';
+        subtitle.textContent = "Also welcome to SpartaVR's Archives website, where YOU get to see a dump of my SWF files, videos, images, and more!";
+        audio2.play();
+
+        // When the second audio ends
+        audio2.onended = () => {
+          // Change to homepagetalk3.png and play the third audio
+          image.src = 'homepagetalk3.png';
+          subtitle.textContent = "And if you're not an adult, do not go to the nsfw tabs, otherwise you'll get whipped by your parents.";
+          audio3.play();
+
+          // When the third audio ends
+          audio3.onended = () => {
+            // Revert to homepage.png and clear the subtitle
+            image.src = 'homepage.png';
+            subtitle.textContent = "";
+          };
+        };
+      };
+    });
+
+    // Function to update the date and time
+    const updateDateTime = () => {
+      const now = new Date();
+      const dayName = now.toLocaleString('en-US', { weekday: 'long' });
+      const day = now.getDate();
+      const month = now.toLocaleString('en-US', { month: 'long' });
+      const year = now.getFullYear();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+
+      footer.textContent = `${dayName} Date: ${day} ${month} ${year} Clock: ${hours}:${minutes}:${seconds}`;
+    };
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+  </script>
 </body>
 </html>
