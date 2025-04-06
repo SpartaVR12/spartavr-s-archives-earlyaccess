@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Monke Ball Is Coming For You</title>
+  <title>What If BenjiXSCARLETT Made A Monke Monke Song</title>
 
   <!-- Link to Ruffle JS CDN -->
   <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
@@ -12,47 +12,47 @@
     body {
       font-family: 'Press Start 2P', cursive;
       margin: 0;
-      background-color: #6e6e6e; /* Black for full immersion */
-      color: white;
+      background-color: #00b7ff; /* Background color for body */
+      color: rgb(255, 255, 100);
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden; /* Prevents scrolling */
     }
 
     h1 {
-      font-size: 1.8em;
+      font-size: 2em;
       color: rgb(202, 36, 36);
       text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
-      margin-bottom: 10px;
-    }
-
-    .bio {
-      font-size: 1.1em;
-      color: rgb(255, 215, 0); /* Golden text for emphasis */
       margin-bottom: 20px;
     }
 
+    p {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
     .flash-container {
-      width: 550px; /* Fixed SWF width */
-      height: 400px; /* Fixed SWF height */
-      overflow: hidden; /* Hides anything outside SWF boundaries */
-      background-color: rgb(119, 119, 119); /* Contrast background */
-      border-radius: 10px; /* Adds a smooth visual border */
-      border: 2px solid white; /* Frames SWF neatly */
+      width: 1280px; /* Fixed SWF width */
+      height: 720px; /* Fixed SWF height */
+      overflow: hidden; /* Prevents anything outside the container from being visible */
+      margin: 0 auto;
+      background-color: black; /* Black background inside the container */
+      border-radius: 10px;
+      border: 2px solid white; /* Neat border */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative; /* Ensures overlay positioning works */
+      position: relative; /* Required for positioning child elements */
     }
 
     #download-swf-button {
       position: fixed; /* Always visible */
       top: 50%; /* Center vertically */
-      transform: translateY(-50%); /* Adjust vertical positioning */
+      transform: translateY(-50%); /* Correct vertical alignment */
       right: 20px; /* Fixed on the right side */
       background-color: #333;
       color: white;
@@ -60,7 +60,7 @@
       padding: 8px 15px;
       border-radius: 5px;
       cursor: pointer;
-      z-index: 100; /* Ensures it stays on top */
+      z-index: 100; /* Ensure button stays on top */
     }
 
     #download-swf-button:hover {
@@ -70,12 +70,12 @@
 </head>
 
 <body>
-  <h1>Monke Ball Is Coming For You</h1>
-  <p class="bio">You better run...</p>
+  <h1>What If BenjiXSCARLETT Made A Monke Monke Song</h1>
+  <p>We'll find out!</p>
 
   <!-- Flash container for the SWF -->
   <div class="flash-container" id="flash-container"></div>
-  
+
   <!-- Always visible Download .swf button -->
   <button id="download-swf-button">Download .swf</button>
 
@@ -86,7 +86,7 @@
 
       const container = document.getElementById("flash-container");
       const downloadButton = document.getElementById("download-swf-button");
-      const swfFile = "monke_ball_is_coming_for_you.swf"; // Path to SWF file
+      const swfFile = "thebenjimonkemonkeshit.swf"; // Path to SWF file
 
       if (container) {
         container.appendChild(player);
@@ -96,8 +96,8 @@
           .then(() => {
             console.log("SWF successfully loaded.");
             player.style.width = "100%";
-            player.style.height = "100%"; // Makes SWF fill the container
-            player.style.objectFit = "cover"; // Ensures SWF covers the boundaries
+            player.style.height = "100%";
+            player.style.objectFit = "cover"; /* Ensures SWF content fills the container and hides overflow */
           })
           .catch(error => console.error("Error loading SWF file:", error));
 
@@ -118,7 +118,7 @@
         downloadButton.addEventListener("click", () => {
           const link = document.createElement("a");
           link.href = swfFile;
-          link.download = "monke_ball_is_coming_for_you.swf";
+          link.download = "thebenjimonkemonkeshit.swf";
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
