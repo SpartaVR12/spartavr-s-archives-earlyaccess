@@ -5,95 +5,82 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* General body styling */
     body {
-      font-family: 'Press Start 2P', cursive; /* Pixelated font */
+      font-family: 'Press Start 2P', cursive;
       margin: 0;
-      background-color: #f5f5f5; /* Light background for contrast */
-      text-align: center; /* Center align everything */
+      background-color: #f5f5f5;
+      text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh; /* Full viewport height */
+      height: 100vh;
     }
 
-    /* Title styling */
     h1 {
       font-size: 3em;
       color: white;
-      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black; /* Full black outline */
+      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
       margin: 20px 0;
     }
 
-    /* Subtitle styling */
     #subtitle {
       font-size: 1.2em;
       color: white;
-      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black; /* Full black outline */
+      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
       margin: 10px 0;
-      height: 2em; /* Fixed height to avoid layout shift */
+      height: 2em;
     }
 
-    /* Image styling */
     .centered-image {
-      max-width: 100%; /* Make sure the image is responsive */
-      max-height: 50vh; /* Limit height for better display */
+      max-width: 100%;
+      max-height: 50vh;
       margin-bottom: 20px;
-      cursor: pointer; /* Indicate interactivity */
+      cursor: pointer;
     }
 
-    /* Tab container styling */
     .tabs {
       display: flex;
-      justify-content: center; /* Center the tabs */
+      justify-content: center;
       gap: 20px;
-      flex-wrap: wrap; /* Make tabs responsive */
+      flex-wrap: wrap;
       padding: 20px;
     }
 
-    /* Individual tab styling */
     .tab {
       text-decoration: none;
-      color: white; /* White text */
-      width: 150px; /* Fixed width for tabs */
-      background-color: red; /* Red background for boxes */
+      color: white;
+      width: 150px;
+      background-color: red;
       padding: 10px;
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for boxes */
-      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black; /* Full black outline */
-      font-size: 1em; /* Adjusted text size */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
+      font-size: 1em;
     }
 
     .tab:hover {
-      background-color: darkred; /* Darker red on hover */
+      background-color: darkred;
     }
 
-    /* Footer styling */
     footer {
       font-size: 1.2em;
       color: white;
-      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black; /* Full black outline */
+      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
       margin-top: 20px;
     }
   </style>
-  <!-- Link to Google Fonts for pixelated font -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Title Section -->
   <h1>SpartaVR's Archives</h1>
 
-  <!-- Centered Image Section -->
   <img id="homepage-image" src="homepage.png" alt="Homepage Image" class="centered-image">
 
-  <!-- Subtitle Section -->
   <div id="subtitle"></div>
 
-  <!-- Bio Section -->
   <p>where I dump some of my SWF files, videos, images, etc. Nothing more.</p>
 
-  <!-- Navigation Tabs -->
   <div class="tabs">
     <a href="swf.html" class="tab">SWFs</a>
     <a href="videos.html" class="tab">Videos</a>
@@ -101,54 +88,45 @@
     <a href="documents.html" class="tab">Documents</a>
   </div>
 
-  <!-- Audio Section -->
   <audio id="audio1" src="whydidyouclickonme.wav"></audio>
   <audio id="audio2" src="alsowelcome.wav"></audio>
   <audio id="audio3" src="ifyournotanadult.wav"></audio>
 
-  <!-- Footer Section -->
   <footer id="footer"></footer>
 
-  <!-- Script for Interaction -->
   <script>
     const image = document.getElementById('homepage-image');
     const subtitle = document.getElementById('subtitle');
     const audio1 = document.getElementById('audio1');
     const audio2 = document.getElementById('audio2');
-    const audio3 = document.getElementById('audio3');
     const footer = document.getElementById('footer');
-  
+
     let isAudioPlaying = false;
-  
+
     const playAudio = (audio) => {
       return new Promise((resolve) => {
         audio.play();
         audio.onended = resolve;
       });
     };
-  
+
     const handleImageClick = async () => {
       if (isAudioPlaying) return;
       isAudioPlaying = true;
-  
+
       image.src = 'homepagetalk.png';
       subtitle.textContent = "Why did you click on this logo? Did you think it was something special, like redirecting you to another website?";
       await playAudio(audio1);
-  
+
       image.src = 'homepagetalk2.png';
       subtitle.textContent = "Also welcome to SpartaVR's Archives website, where YOU get to see a dump of my SWF files, videos, images, and more!";
       await playAudio(audio2);
-  
-      image.src = 'homepagetalk3.png';
-      subtitle.textContent = "And if you're not an adult, do not go to the nsfw tabs, otherwise you'll get whipped by your parents.";
-      await playAudio(audio3);
-  
+
       image.src = 'homepage.png';
       subtitle.textContent = "";
       isAudioPlaying = false;
     };
-  
-    // Click and keyboard accessibility
+
     image.addEventListener('click', handleImageClick);
     image.setAttribute('tabindex', '0');
     image.setAttribute('aria-label', 'Clickable SpartaVR logo that plays dialogue');
@@ -158,8 +136,7 @@
         event.preventDefault();
       }
     });
-  
-    // Date/Time Clock
+
     const updateDateTime = () => {
       const now = new Date();
       const dayName = now.toLocaleString('en-US', { weekday: 'long' });
@@ -169,13 +146,25 @@
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
       const seconds = now.getSeconds().toString().padStart(2, '0');
-  
+
       footer.textContent = `${dayName} Date: ${day} ${month} ${year} Clock: ${hours}:${minutes}:${seconds}`;
+
+      const updateLog = document.createElement('div');
+      updateLog.textContent = "Update Log: NSFW Tab Removed due to Github's policies. Sorry you addicts >:(";
+      updateLog.style.fontSize = '1em';
+      updateLog.style.marginTop = '10px';
+      updateLog.style.color = 'white';
+      updateLog.style.textShadow = '2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black';
+
+      // Ensure only one log is added
+      if (!document.getElementById('update-log')) {
+        updateLog.id = 'update-log';
+        footer.appendChild(updateLog);
+      }
     };
-  
-    updateDateTime(); // initialize immediately
+
+    updateDateTime();
     setInterval(updateDateTime, 1000);
   </script>
-  
 </body>
 </html>
