@@ -4,6 +4,9 @@
   <title>SpartaVR's Archives</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <style>
     body {
       font-family: 'Press Start 2P', cursive;
@@ -68,6 +71,32 @@
       color: white;
       text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
       margin-top: 20px;
+      line-height: 2;
+    }
+
+    /* Styled Discord Button with Animation Fix */
+    .discord-link {
+      font-family: 'Press Start 2P', cursive;
+      color: white;
+      background-color: #66ccff; /* Lighter blue */
+      border: 2px solid #4da6ff;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease; /* Smooth transition effect */
+    }
+
+    .discord-link:hover {
+      background-color: #4da6ff; /* Darker blue on hover */
+      border-color: #66ccff;
+      color: white;
+    }
+
+    .discord-link:active {
+      transform: scale(0.95); /* Button shrinking effect */
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -88,83 +117,11 @@
     <a href="documents.html" class="tab">Documents</a>
   </div>
 
-  <audio id="audio1" src="whydidyouclickonme.wav"></audio>
-  <audio id="audio2" src="alsowelcome.wav"></audio>
-  <audio id="audio3" src="ifyournotanadult.wav"></audio>
+  <footer id="footer">
+    <p>Update Log: NSFW Tab Removed due to Github's policies. Sorry you addicts >:)</p>
+    <p>Note: This is still in W.I.P, but you still have early access to it! :)</p>
+    <p><a href="https://discord.gg/qpqKbXb2sr" class="discord-link" target="_blank">SpartaVR's Archives Discord Server</a></p>
+  </footer>
 
-  <footer id="footer"></footer>
-
-  <script>
-    const image = document.getElementById('homepage-image');
-    const subtitle = document.getElementById('subtitle');
-    const audio1 = document.getElementById('audio1');
-    const audio2 = document.getElementById('audio2');
-    const footer = document.getElementById('footer');
-
-    let isAudioPlaying = false;
-
-    const playAudio = (audio) => {
-      return new Promise((resolve) => {
-        audio.play();
-        audio.onended = resolve;
-      });
-    };
-
-    const handleImageClick = async () => {
-      if (isAudioPlaying) return;
-      isAudioPlaying = true;
-
-      image.src = 'homepagetalk.png';
-      subtitle.textContent = "Why did you click on this logo? Did you think it was something special, like redirecting you to another website?";
-      await playAudio(audio1);
-
-      image.src = 'homepagetalk2.png';
-      subtitle.textContent = "Also welcome to SpartaVR's Archives website, where YOU get to see a dump of my SWF files, videos, images, and more!";
-      await playAudio(audio2);
-
-      image.src = 'homepage.png';
-      subtitle.textContent = "";
-      isAudioPlaying = false;
-    };
-
-    image.addEventListener('click', handleImageClick);
-    image.setAttribute('tabindex', '0');
-    image.setAttribute('aria-label', 'Clickable SpartaVR logo that plays dialogue');
-    image.addEventListener('keydown', (event) => {
-      if ((event.key === 'Enter' || event.key === ' ') && !isAudioPlaying) {
-        handleImageClick();
-        event.preventDefault();
-      }
-    });
-
-    const updateDateTime = () => {
-      const now = new Date();
-      const dayName = now.toLocaleString('en-US', { weekday: 'long' });
-      const day = now.getDate();
-      const month = now.toLocaleString('en-US', { month: 'long' });
-      const year = now.getFullYear();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-
-      footer.textContent = `${dayName} Date: ${day} ${month} ${year} Clock: ${hours}:${minutes}:${seconds}`;
-
-      const updateLog = document.createElement('div');
-      updateLog.textContent = "Update Log: NSFW Tab Removed due to Github's policies. Sorry you addicts >:(";
-      updateLog.style.fontSize = '1em';
-      updateLog.style.marginTop = '10px';
-      updateLog.style.color = 'white';
-      updateLog.style.textShadow = '2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black';
-
-      // Ensure only one log is added
-      if (!document.getElementById('update-log')) {
-        updateLog.id = 'update-log';
-        footer.appendChild(updateLog);
-      }
-    };
-
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-  </script>
 </body>
 </html>
