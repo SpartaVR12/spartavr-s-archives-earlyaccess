@@ -146,32 +146,31 @@
     const audio1 = document.getElementById('audio1');
     const audio2 = document.getElementById('audio2');
 
-    let isClicked = false;  // This variable will track if the image was clicked
+    let isFirstClick = true;  // Variable to track if it's the first click
 
-    image.addEventListener('click', () => {
-      if (!isClicked) {
-        isClicked = true;  // Set the flag to true to prevent further clicks
+    function handleClick() {
+      if (isFirstClick) {
+        isFirstClick = false; // Prevent further clicks until both audios are finished
         image.src = 'homepagetalk.png';
         subtitle.textContent = "Why did you click on this logo? Did you think it was something special? like redirecting you to another website?";
         audio1.currentTime = 0;
         audio1.play();
       }
-    });
+    }
+
+    image.addEventListener('click', handleClick);
 
     audio1.addEventListener('ended', () => {
-      if (isClicked) {
-        image.src = 'homepagetalk2.png';
-        subtitle.textContent = "Also welcome to SpartaVR's Archives website! Where you get to see a dump of my SWF files, videos, images. and more!";
-        audio2.currentTime = 0;
-        audio2.play();
-      }
+      image.src = 'homepagetalk2.png';
+      subtitle.textContent = "Also welcome to SpartaVR's Archives website! Where you get to see a dump of my SWF files, videos, images, and more!";
+      audio2.currentTime = 0;
+      audio2.play();
     });
 
     audio2.addEventListener('ended', () => {
-      if (isClicked) {
-        image.src = 'homepage.png';
-        subtitle.textContent = "";
-      }
+      image.src = 'homepage.png';
+      subtitle.textContent = "";
+      isFirstClick = true;  // Allow the image to be clicked again after both audios are done
     });
   </script>
 </body>
