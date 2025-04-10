@@ -7,6 +7,8 @@
 
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
   <style>
     body {
       font-family: 'Press Start 2P', cursive;
@@ -17,27 +19,41 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
     }
 
-    h1 {
-      font-size: 3em;
+    h1, #subtitle, p, footer, .tab {
+      font-size: 1.2em;
       color: white;
-      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
-      margin: 20px 0;
+      text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000,
+         0px  0px 5px #000;
+    }
+
+    /* Added black outline and white text to the h1 */
+    h1 {
+      font-size: 2.2em;
+      margin: 20px 0 10px;
+      color: white;
+      text-shadow:
+        -2px -2px 0 #000,
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000;
     }
 
     #subtitle {
-      font-size: 1.2em;
-      color: white;
-      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
-      margin: 10px 0;
-      height: 2em;
+      font-size: 0.9em;
+      margin: 10px 0 20px;
+      padding: 0 20px;
     }
 
     .centered-image {
-      max-width: 100%;
-      max-height: 50vh;
+      max-width: 90%;
+      height: auto;
       margin-bottom: 20px;
       cursor: pointer;
     }
@@ -58,8 +74,7 @@
       padding: 10px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
-      font-size: 1em;
+      font-size: 0.75em;
     }
 
     .tab:hover {
@@ -67,45 +82,43 @@
     }
 
     footer {
-      font-size: 1.2em;
-      color: white;
-      text-shadow: 2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;
+      font-size: 0.9em;
+      color: #333;
       margin-top: 20px;
       line-height: 2;
+      text-align: center;
+      padding: 10px;
     }
 
-    /* Styled Discord Button with Animation Fix */
     .discord-link {
       font-family: 'Press Start 2P', cursive;
       color: white;
-      background-color: #66ccff; /* Lighter blue */
+      background-color: #66ccff;
       border: 2px solid #4da6ff;
       padding: 10px 20px;
-      font-size: 1.2em;
+      font-size: 0.75em;
       text-decoration: none;
       display: inline-block;
       border-radius: 5px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease; /* Smooth transition effect */
+      transition: all 0.3s ease;
     }
 
     .discord-link:hover {
-      background-color: #4da6ff; /* Darker blue on hover */
+      background-color: #4da6ff;
       border-color: #66ccff;
       color: white;
     }
 
     .discord-link:active {
-      transform: scale(0.95); /* Button shrinking effect */
+      transform: scale(0.95);
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1>SpartaVR's Archives</h1>
 
   <img id="homepage-image" src="homepage.png" alt="Homepage Image" class="centered-image">
-
   <div id="subtitle"></div>
 
   <p>where I dump some of my SWF files, videos, images, etc. Nothing more.</p>
@@ -117,11 +130,49 @@
     <a href="documents.html" class="tab">Documents</a>
   </div>
 
-  <footer id="footer">
+  <footer>
     <p>Update Log: NSFW Tab Removed due to Github's policies. Sorry you addicts >:)</p>
     <p>Note: This is still in W.I.P, but you still have early access to it! :)</p>
     <p><a href="https://discord.gg/qpqKbXb2sr" class="discord-link" target="_blank">SpartaVR's Archives Discord Server</a></p>
   </footer>
 
+  <!-- Audio files -->
+  <audio id="audio1" src="whydidyouclickonme.wav" preload="auto"></audio>
+  <audio id="audio2" src="alsowelcome.wav" preload="auto"></audio>
+
+  <script>
+    const image = document.getElementById('homepage-image');
+    const subtitle = document.getElementById('subtitle');
+    const audio1 = document.getElementById('audio1');
+    const audio2 = document.getElementById('audio2');
+
+    let isClicked = false;  // This variable will track if the image was clicked
+
+    image.addEventListener('click', () => {
+      if (!isClicked) {
+        isClicked = true;  // Set the flag to true to prevent further clicks
+        image.src = 'homepagetalk.png';
+        subtitle.textContent = "Why did you click on this logo? Did you think it was something special? like redirecting you to another website?";
+        audio1.currentTime = 0;
+        audio1.play();
+      }
+    });
+
+    audio1.addEventListener('ended', () => {
+      if (isClicked) {
+        image.src = 'homepagetalk2.png';
+        subtitle.textContent = "Also welcome to SpartaVR's Archives website! Where you get to see a dump of my SWF files, videos, images. and more!";
+        audio2.currentTime = 0;
+        audio2.play();
+      }
+    });
+
+    audio2.addEventListener('ended', () => {
+      if (isClicked) {
+        image.src = 'homepage.png';
+        subtitle.textContent = "";
+      }
+    });
+  </script>
 </body>
 </html>
