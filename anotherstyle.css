@@ -1,0 +1,89 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Pixelated Text Styling */
+  .pixel-text {
+    font-family: 'Press Start 2P', cursive;
+    color: white; /* Main text color */
+    text-shadow: 
+      2px 2px 0px black,  /* Black outline */
+      -2px -2px 0px black,
+      2px -2px 0px black,
+      -2px 2px 0px black,
+      0 0 10px rgba(0, 0, 0, 0.5), /* Shadow fade effect */
+      0 0 20px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Subtitle Styling */
+  .subtitle {
+    font-size: 1.2rem; /* Default subtitle size */
+    margin-top: 20px;
+    text-align: center;
+    line-height: 1.5; /* Improve readability */
+  }
+  
+  /* Paragraph Spacing */
+  .section p {
+    margin: 20px 0; /* Increased space between paragraphs */
+    line-height: 1.8; /* Improve readability */
+  }
+  
+  /* Colored Text Styling */
+  .red-text {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .green-text {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .yellow-text {
+    color: yellow;
+    font-weight: bold;
+  }
+  
+  .light-red-text {
+    color: #ff6666; /* Light red color */
+    font-weight: bold;
+  }
+  
+  /* Section Styling */
+  .section {
+    width: 80%;
+    margin: 50px auto; /* More spacing between sections */
+    padding: 20px; /* Add padding for better visual separation */
+    text-align: left;
+    background-color: #eaeaea; /* Light background color for sections */
+    border-radius: 10px; /* Rounded corners for better aesthetics */
+  }
+  
+  /* Section Title */
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px; /* Add spacing below section title */
+  }
+  
+  /* Mobile-Friendly Adjustments */
+  @media (max-width: 768px) {
+    .subtitle {
+      font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+    .section {
+      width: 95%; /* Expand width for mobile screens */
+    }
+    .section p {
+      line-height: 1.6; /* Adjust line spacing for readability */
+    }
+  }
+  
