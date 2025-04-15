@@ -11,29 +11,30 @@
             margin: 0;
             background-color: #f5f5f5;
             text-align: center;
+            padding: 40px; /* Added padding for general layout breathing room */
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             color: white;
             text-shadow:
                 -1px -1px 0 #000,
                  1px -1px 0 #000,
                 -1px  1px 0 #000,
                  1px  1px 0 #000,
-                -2px -2px 0 rgba(0, 0, 0, 0.5), /* Slightly faded shadow */
+                -2px -2px 0 rgba(0, 0, 0, 0.5),
                  2px -2px 0 rgba(0, 0, 0, 0.5),
                 -2px  2px 0 rgba(0, 0, 0, 0.5),
                  2px  2px 0 rgba(0, 0, 0, 0.5),
-                -3px -3px 4px rgba(0, 0, 0, 0.3), /* Larger fade */
+                -3px -3px 4px rgba(0, 0, 0, 0.3),
                  3px -3px 4px rgba(0, 0, 0, 0.3),
                 -3px  3px 4px rgba(0, 0, 0, 0.3),
                  3px  3px 4px rgba(0, 0, 0, 0.3);
-            margin: 20px 0;
+            margin: 60px 0; /* Increased spacing above and below the title */
         }
 
         nav {
-            margin-top: 20px;
+            margin-top: 50px; /* More separation between title and tabs */
         }
 
         nav ul {
@@ -41,7 +42,7 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 50px; /* Spacious gap between tabs */
         }
 
         nav ul li {
@@ -51,11 +52,24 @@
         nav ul li a {
             text-decoration: none;
             color: white;
+            font-size: 1.25em;
+            text-shadow:
+                -1px -1px 0 #000,
+                 1px -1px 0 #000,
+                -1px  1px 0 #000,
+                 1px  1px 0 #000,
+                -2px -2px 0 rgba(0, 0, 0, 0.5),
+                 2px -2px 0 rgba(0, 0, 0, 0.5),
+                -2px  2px 0 rgba(0, 0, 0, 0.5),
+                 2px  2px 0 rgba(0, 0, 0, 0.5),
+                -3px -3px 4px rgba(0, 0, 0, 0.3),
+                 3px -3px 4px rgba(0, 0, 0, 0.3),
+                -3px  3px 4px rgba(0, 0, 0, 0.3),
+                 3px  3px 4px rgba(0, 0, 0, 0.3);
             background-color: red;
-            padding: 10px 20px;
+            padding: 15px 30px; /* Larger padding inside the tabs */
             border-radius: 10px;
             font-family: 'Press Start 2P', cursive;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         nav ul li a:hover {
